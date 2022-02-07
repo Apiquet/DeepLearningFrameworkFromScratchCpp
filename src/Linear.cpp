@@ -2,7 +2,7 @@
  * Linear layer class implementation
 */
 
-#include "../include/Linear.hpp"
+#include "Linear.hpp"
 
 #include <iostream>
 

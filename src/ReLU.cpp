@@ -2,7 +2,7 @@
  * ReLU layer class implementation
 */
 
-#include "../include/ReLU.hpp"
+#include "ReLU.hpp"
 
 #include <iostream>
 

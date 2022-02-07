@@ -2,7 +2,7 @@
  * Trainer layer class implementation
 */
 
-#include "../include/Sequential.hpp"
+#include "Sequential.hpp"
 
 #include <iostream>
 
