@@ -6,12 +6,21 @@
 
 #include <iostream>
 
-namespace DeepLearningFramework
-{
-    Sequential::Sequential(){}
+using namespace DeepLearningFramework;
 
-    void Sequential::printDescription()
-    {
-        std::cout << "I am a Sequential class!" << std::endl;
-    }
-}; // namespace DeepLearningFramework
+Sequential::Sequential(){}
+
+void Sequential::forward()
+{
+    std::cout << "Forward!" << std::endl;
+}
+
+void Sequential::backward()
+{
+    std::cout << "Backward!" << std::endl;
+}
+
+void Sequential::printDescription()
+{
+    std::cout << "I am a Sequential class!" << std::endl;
+}
