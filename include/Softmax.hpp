@@ -6,6 +6,9 @@
 
 #include "Module.hpp"
 
+#include <iostream>
+#include <vector>
+
 namespace DeepLearningFramework
 {
     namespace Activations
@@ -25,18 +28,18 @@ namespace DeepLearningFramework
                 /**
                  * Forward pass of the Softmax activation function.
                  *
-                 * @param x Values on which to apply Softmax
-                 * @return exp(IN_i)/exp(sum(IN)), input saved for backward pass
+                 * @param[out] out exp(IN_i)/exp(sum(IN)), input saved for backward pass
+                 * @param[in] x Values on which to apply Softmax
                  */
-                void forward();
+                void forward(std::vector<float>& out, const std::vector<float>& x);
 
                 /**
                  * Backward pass of the Softmax activation function.
                  *
-                 * @param dout Values on which to apply backpropagation
-                 * @return [Softmax(forward_input) * (1 - Softmax(forward_input))] * input
+                 * @param[out] ddout [Softmax(forward_input) * (1 - Softmax(forward_input))] * input
+                 * @param[in] dout Values on which to apply backpropagation
                  */
-                void backward();
+                void backward(std::vector<float>& ddout, const std::vector<float>& dout);
 
                 /* Print description of Softmax activation class */
                 void printDescription();
@@ -46,12 +49,14 @@ namespace DeepLearningFramework
                 /**
                  * Softmax equation implementation.
                  *
-                 * @param x Values on which to apply equation
-                 * @return exp(IN_i)/exp(sum(IN))
+                 * @param[in] x Values on which to apply equation
+                 * @param[in] y exp(IN_i)/exp(sum(IN))
                  */
-                void equation();
+                void equation(std::vector<float>& y, const std::vector<float>& x);
 
-                // type, name, forward pass input
+                std::string mType = "Activation";
+                std::string mName = "Softmax";
+                std::vector<float> mForwardInput;
         };
     };
     

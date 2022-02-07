@@ -8,15 +8,16 @@ using namespace DeepLearningFramework;
 
 int main()
 {
-    Sequential sequential;
-    Layers::Linear linearLayer;
+    /*Layers::Linear linearLayer((int)2, (int)2);
     Activations::ReLU reluActivation;
     Activations::Softmax softmaxActivation;
     Losses::MSE mseLoss;
+
+    Sequential sequential;
 
     sequential.printDescription();
     linearLayer.printDescription();
     reluActivation.printDescription();
     softmaxActivation.printDescription();
-    mseLoss.printDescription();
+    mseLoss.printDescription();*/
 }

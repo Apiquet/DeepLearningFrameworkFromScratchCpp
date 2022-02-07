@@ -6,6 +6,9 @@
 
 #include "Module.hpp"
 
+#include <iostream>
+#include <vector>
+
 namespace DeepLearningFramework
 {
     namespace Losses
@@ -25,26 +28,27 @@ namespace DeepLearningFramework
                 /**
                  * Forward pass of the MSE loss function.
                  *
-                 * @param y target values
-                 * @param y_pred values obtained by the neural network
-                 * @return 1/N * SUM((y_pred - y)^2), with N the number of samples
+                 * @param[out] loss 1/N * SUM((yPred - y)^2), with N the number of samples
+                 * @param[in] y target values
+                 * @param[in] yPred values obtained by the neural network
                  */
-                void forward();
+                void forward(std::vector<float>& loss, const std::vector<float>& y, const std::vector<float>& yPred);
 
                 /**
                  * Backward pass of the MSE loss function.
                  *
-                 * @param y target values
-                 * @param y_pred values obtained by the neural network
-                 * @return 2*(y_pred-y)/N, with N the number of samples
+                 * @param[out] dloss 2*(yPred-y)/N, with N the number of samples
+                 * @param[in] y target values
+                 * @param[in] yPred values obtained by the neural network
                  */
-                void backward();
+                void backward(std::vector<float>& dloss, const std::vector<float>& y, const std::vector<float>& yPred);
 
                 /* Print description of MSE loss class */
                 void printDescription();
 
             private:
-                // type, name
+                std::string mType = "Loss";
+                std::string mName = "MSE";
         };
     };
     

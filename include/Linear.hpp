@@ -6,6 +6,9 @@
 
 #include "Module.hpp"
 
+#include <iostream>
+#include <vector>
+
 namespace DeepLearningFramework
 {
     namespace Layers
@@ -19,31 +22,31 @@ namespace DeepLearningFramework
         class Linear: public Module
         {
             public:
-                Linear();
+                Linear(int inputFeaturesNumber, int outputFeaturesNumber);
                 ~Linear() = default;
 
                 /**
                  * Forward pass of the Linear layer.
                  *
-                 * @param x Values on which to apply weights and biases.
-                 * @return input * weights + bias
+                 * @param[out] out input * weights + bias
+                 * @param[in] x Values on which to apply weights and biases.
                  */
-                void forward();
+                void forward(std::vector<float>& out, const std::vector<float>& x);
 
                 /**
                  * Backward pass of the Linear layer.
                  *
-                 * @param dout Values on which to apply weights and biases.
-                 * @return input * weights
+                 * @param[out] ddout input * weights
+                 * @param[in] dout Values on which to apply weights and biases.
                  */
-                void backward();
+                void backward(std::vector<float>& ddout, const std::vector<float>& dout);
 
                 /**
                  * Set learning rate used to update weights and bias.
                  *
-                 * @param lr learning rate to use.
+                 * @param[in] lr learning rate to use.
                  */
-                void setLR();
+                void setLR(float lr);
 
                 /** Get the number of parameters of the Linear layer. */
                 void getParametersCount();
@@ -60,7 +63,13 @@ namespace DeepLearningFramework
                  */
                 void update();
 
-                // type, name, forward pass input, in/out number of features, weights, bias
+                std::string mType = "Layer";
+                std::string mName = "Linear";
+                std::vector<float> mForwardInput;
+                int mInputFeaturesNumber = -1;
+                int mOutputFeaturesNumber = -1;
+                std::vector<float> mWeights;
+                std::vector<float> mBias;
         };
     };
 }; // namespace DeepLearningFramework

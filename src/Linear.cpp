@@ -8,17 +8,21 @@
 
 using namespace DeepLearningFramework::Layers;
 
-Linear::Linear(){}
+Linear::Linear(int inputFeaturesNumber, int outputFeaturesNumber){}
 
-void Linear::forward()
+void Linear::forward(std::vector<float>& out, const std::vector<float>& x)
 {
     std::cout << "Forward!" << std::endl;
 }
 
-void Linear::backward()
+void Linear::backward(std::vector<float>& ddout, const std::vector<float>& dout)
 {
     std::cout << "Backward!" << std::endl;
 }
+
+void Linear::setLR(float lr){}
+
+void Linear::getParametersCount(){}
 
 void Linear::printDescription()
 {

@@ -6,6 +6,9 @@
 
 #include "Module.hpp"
 
+#include <iostream>
+#include <vector>
+
 namespace DeepLearningFramework
 {
     /**
@@ -19,25 +22,26 @@ namespace DeepLearningFramework
     class Sequential: public Module
     {
         public:
-            Sequential();
+            template<class T>
+            Sequential(std::vector<Module>& model, T loss);
             ~Sequential() = default;
 
             /**
              * Apply forward pass for each layer in sequence.
              *
-             * @param inputData Values on which to apply all layers in sequence.
-             * @return neural network result
+             * @param[out] out neural network result
+             * @param[in] x data on which to apply the model (all layers in sequence).
              */
-            void forward();
+            void forward(std::vector<float>& out, const std::vector<float>& x);
 
             /**
              * Calculate loss and apply backward pass for each layer in reverse order.
              *
-             * @param y target results.
-             * @param yPred obtained results from the neural network.
-             * @return loss value
+             * @param[out] loss Loss value
+             * @param[in] y target results.
+             * @param[in] yPred obtained results from the neural network.
              */
-            void backward();
+            void backward(std::vector<float>& loss, const std::vector<float>& y, const std::vector<float>& yPred);
 
             /* Print description of each module in sequence */
             void printDescription();
@@ -47,12 +51,15 @@ namespace DeepLearningFramework
              *
              * @param lr learning rate to use.
              */
-            void setLR();
+            void setLR(float lr);
 
             /** Get the number of parameters of the model. */
             void getParametersCount();
 
         private:
             // type, name, neural network
+            std::string mType = "Module";
+            std::string mName = "Sequential";
+            std::vector<Module> mModel;
     };    
 }; // namespace DeepLearningFramework
