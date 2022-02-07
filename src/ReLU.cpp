@@ -6,25 +6,21 @@
 
 #include <iostream>
 
-namespace DeepLearningFramework
+using namespace DeepLearningFramework::Activations;
+
+ReLU::ReLU(){}
+
+void ReLU::forward()
 {
-    namespace Activations
-    {
-        ReLU::ReLU(){}
+    std::cout << "Forward!" << std::endl;
+}
 
-        void ReLU::forward()
-        {
-            std::cout << "Forward!" << std::endl;
-        }
+void ReLU::backward()
+{
+    std::cout << "Backward!" << std::endl;
+}
 
-        void ReLU::backward()
-        {
-            std::cout << "Backward!" << std::endl;
-        }
-
-        void ReLU::printDescription()
-        {
-            std::cout << "I am a ReLU activation!" << std::endl;
-        }
-    };
-}; // namespace DeepLearningFramework
+void ReLU::printDescription()
+{
+    std::cout << "I am a ReLU activation!" << std::endl;
+}

@@ -6,25 +6,21 @@
 
 #include <iostream>
 
-namespace DeepLearningFramework
+using namespace DeepLearningFramework::Layers;
+
+Linear::Linear(){}
+
+void Linear::forward()
 {
-    namespace Layers
-    {
-        Linear::Linear(){}
+    std::cout << "Forward!" << std::endl;
+}
 
-        void Linear::forward()
-        {
-            std::cout << "Forward!" << std::endl;
-        }
+void Linear::backward()
+{
+    std::cout << "Backward!" << std::endl;
+}
 
-        void Linear::backward()
-        {
-            std::cout << "Backward!" << std::endl;
-        }
-
-        void Linear::printDescription()
-        {
-            std::cout << "I am a Linear Layer!" << std::endl;
-        }
-    };
-}; // namespace DeepLearningFramework
+void Linear::printDescription()
+{
+    std::cout << "I am a Linear Layer!" << std::endl;
+}
