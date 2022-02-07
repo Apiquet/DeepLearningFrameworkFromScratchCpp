@@ -8,7 +8,7 @@
 
 namespace DeepLearningFramework
 {
-    namespace Loss
+    namespace Losses
     {
         /**
          * Loss class: MSE.
