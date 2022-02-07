@@ -12,6 +12,16 @@ namespace DeepLearningFramework
     {
         Linear::Linear(){}
 
+        void Linear::forward()
+        {
+            std::cout << "Forward!" << std::endl;
+        }
+
+        void Linear::backward()
+        {
+            std::cout << "Backward!" << std::endl;
+        }
+
         void Linear::printDescription()
         {
             std::cout << "I am a Linear Layer!" << std::endl;

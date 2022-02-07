@@ -12,6 +12,16 @@ namespace DeepLearningFramework
     {
         ReLU::ReLU(){}
 
+        void ReLU::forward()
+        {
+            std::cout << "Forward!" << std::endl;
+        }
+
+        void ReLU::backward()
+        {
+            std::cout << "Backward!" << std::endl;
+        }
+
         void ReLU::printDescription()
         {
             std::cout << "I am a ReLU activation!" << std::endl;
