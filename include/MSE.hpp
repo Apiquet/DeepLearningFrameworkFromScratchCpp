@@ -7,7 +7,6 @@
 #include "Module.hpp"
 
 #include <iostream>
-#include <vector>
 
 namespace DeepLearningFramework
 {
@@ -19,7 +18,7 @@ namespace DeepLearningFramework
          * forward: output = input if input > 0, else 0
          * backward: output = 1*input if forward input was > 0, else 0
          */
-        class MSE: public Module
+        class MSE
         {
             public:
                 MSE();
@@ -32,7 +31,7 @@ namespace DeepLearningFramework
                  * @param[in] y target values
                  * @param[in] yPred values obtained by the neural network
                  */
-                void forward(std::vector<float>& loss, const std::vector<float>& y, const std::vector<float>& yPred);
+                void forward(float& loss, const Eigen::MatrixXf& y, const Eigen::MatrixXf& yPred);
 
                 /**
                  * Backward pass of the MSE loss function.
@@ -41,7 +40,7 @@ namespace DeepLearningFramework
                  * @param[in] y target values
                  * @param[in] yPred values obtained by the neural network
                  */
-                void backward(std::vector<float>& dloss, const std::vector<float>& y, const std::vector<float>& yPred);
+                void backward(Eigen::MatrixXf& dloss, const Eigen::MatrixXf& y, const Eigen::MatrixXf& yPred);
 
                 /* Print description of MSE loss class */
                 void printDescription();

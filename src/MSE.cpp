@@ -8,14 +8,16 @@
 
 using namespace DeepLearningFramework::Losses;
 
-void MSE::forward(std::vector<float>& loss, const std::vector<float>& y, const std::vector<float>& yPred)
+MSE::MSE(){}
+
+void MSE::forward(float& loss, const Eigen::MatrixXf& y, const Eigen::MatrixXf& yPred)
 {
-    std::cout << "Forward!" << std::endl;
+    loss = (yPred - y).squaredNorm() / y.rows();
 }
 
-void MSE::backward(std::vector<float>& dloss, const std::vector<float>& y, const std::vector<float>& yPred)
+void MSE::backward(Eigen::MatrixXf& dloss, const Eigen::MatrixXf& y, const Eigen::MatrixXf& yPred)
 {
-    std::cout << "Backward!" << std::endl;
+    dloss = 2.f * (yPred - y) / y.rows();
 }
 
 void MSE::printDescription()
