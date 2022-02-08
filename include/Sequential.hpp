@@ -1,5 +1,5 @@
 /**
- * Sequential class definition
+ * Sequential model class definition
 */
 
 #pragma once

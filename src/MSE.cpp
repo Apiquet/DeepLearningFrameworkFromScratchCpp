@@ -1,5 +1,5 @@
 /**
- * ReLU layer class implementation
+ * MSE loss class implementation
 */
 
 #include "MSE.hpp"

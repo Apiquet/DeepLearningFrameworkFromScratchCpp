@@ -1,5 +1,5 @@
 /**
- * Softmax layer class implementation
+ * Softmax activation class implementation
 */
 
 #include "Softmax.hpp"

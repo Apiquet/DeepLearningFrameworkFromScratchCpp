@@ -1,5 +1,5 @@
 /**
- * Trainer layer class implementation
+ * Sequential model class implementation
 */
 
 #include "Sequential.hpp"

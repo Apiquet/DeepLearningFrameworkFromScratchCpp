@@ -1,5 +1,5 @@
 /**
- * ReLU activation class definition
+ * MSE loss class definition
 */
 
 #pragma once
