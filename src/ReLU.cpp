@@ -10,14 +10,15 @@ using namespace DeepLearningFramework::Activations;
 
 ReLU::ReLU(){}
 
-void ReLU::forward(std::vector<float>& out, const std::vector<float>& x)
+void ReLU::forward(Eigen::MatrixXf& out, const Eigen::MatrixXf& x)
 {
-    std::cout << "Forward!" << std::endl;
+    out = (x.array() < 0).select(0, x);
+    mForwardInput = std::move(x);
 }
 
-void ReLU::backward(std::vector<float>& ddout, const std::vector<float>& dout)
+void ReLU::backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout)
 {
-    std::cout << "Backward!" << std::endl;
+    ddout = (mForwardInput.array() < 0).select(0, dout);
 }
 
 void ReLU::printDescription()

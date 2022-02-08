@@ -4,15 +4,17 @@
 
 #pragma once
 
+#include <Eigen/Dense>
+
 namespace DeepLearningFramework
 {
     class Module
     {
         public:
 
-            virtual void forward() = 0;
+            virtual void forward(Eigen::MatrixXf& out, const Eigen::MatrixXf& x) = 0;
 
-            virtual void backward() = 0;
+            virtual void backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout) = 0;
 
             virtual void printDescription() = 0;
     };
