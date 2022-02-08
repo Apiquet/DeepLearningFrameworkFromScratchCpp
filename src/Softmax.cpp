@@ -10,14 +10,12 @@ using namespace DeepLearningFramework::Activations;
 
 Softmax::Softmax(){}
 
-void Softmax::forward(std::vector<float>& out, const std::vector<float>& x)
+void Softmax::forward(Eigen::MatrixXf& out, const Eigen::MatrixXf& x)
 {
-    std::cout << "Forward!" << std::endl;
 }
 
-void Softmax::backward(std::vector<float>& ddout, const std::vector<float>& dout)
+void Softmax::backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout)
 {
-    std::cout << "Backward!" << std::endl;
 }
 
 void Softmax::printDescription()
@@ -25,4 +23,11 @@ void Softmax::printDescription()
     std::cout << "I am a Softmax activation!" << std::endl;
 }
 
-void Softmax::equation(std::vector<float>& y, const std::vector<float>& x){}
+void Softmax::equation(Eigen::MatrixXf& y, const Eigen::MatrixXf& x)
+{
+    Eigen::MatrixXf expX = x.array().exp();
+    y = x;
+    for (int row = 0; row < x.rows(); ++row) {
+        y.row(row) = expX.row(row) / expX.row(row).sum();
+    }
+}

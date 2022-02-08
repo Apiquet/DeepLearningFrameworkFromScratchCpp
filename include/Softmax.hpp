@@ -7,7 +7,6 @@
 #include "Module.hpp"
 
 #include <iostream>
-#include <vector>
 
 namespace DeepLearningFramework
 {
@@ -31,7 +30,7 @@ namespace DeepLearningFramework
                  * @param[out] out exp(IN_i)/exp(sum(IN)), input saved for backward pass
                  * @param[in] x Values on which to apply Softmax
                  */
-                void forward(std::vector<float>& out, const std::vector<float>& x);
+                void forward(Eigen::MatrixXf& out, const Eigen::MatrixXf& x) override;
 
                 /**
                  * Backward pass of the Softmax activation function.
@@ -39,12 +38,10 @@ namespace DeepLearningFramework
                  * @param[out] ddout [Softmax(forward_input) * (1 - Softmax(forward_input))] * input
                  * @param[in] dout Values on which to apply backpropagation
                  */
-                void backward(std::vector<float>& ddout, const std::vector<float>& dout);
+                void backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout) override;
 
                 /* Print description of Softmax activation class */
-                void printDescription();
-
-            private:
+                void printDescription() override;
 
                 /**
                  * Softmax equation implementation.
@@ -52,11 +49,12 @@ namespace DeepLearningFramework
                  * @param[in] x Values on which to apply equation
                  * @param[in] y exp(IN_i)/exp(sum(IN))
                  */
-                void equation(std::vector<float>& y, const std::vector<float>& x);
+                void equation(Eigen::MatrixXf& y, const Eigen::MatrixXf& x);
 
+            private:
                 std::string mType = "Activation";
                 std::string mName = "Softmax";
-                std::vector<float> mForwardInput;
+                Eigen::MatrixXf mForwardInput;
         };
     };
     
