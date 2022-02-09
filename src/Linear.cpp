@@ -8,14 +8,20 @@
 
 using namespace DeepLearningFramework::Layers;
 
-Linear::Linear(int inputFeaturesNumber, int outputFeaturesNumber){}
-
-void Linear::forward(std::vector<float>& out, const std::vector<float>& x)
+Linear::Linear(int inputFeaturesNumber, int outputFeaturesNumber)
 {
-    std::cout << "Forward!" << std::endl;
+    mInputFeaturesNumber = inputFeaturesNumber;
+    mOutputFeaturesNumber = outputFeaturesNumber;
+    mWeights = Eigen::MatrixXf::Random(inputFeaturesNumber, outputFeaturesNumber).normalized();
+    mBias = Eigen::MatrixXf::Random(outputFeaturesNumber, 1).normalized();
 }
 
-void Linear::backward(std::vector<float>& ddout, const std::vector<float>& dout)
+void Linear::forward(Eigen::MatrixXf& out, const Eigen::MatrixXf& x)
+{
+    
+}
+
+void Linear::backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout)
 {
     std::cout << "Backward!" << std::endl;
 }

@@ -31,7 +31,7 @@ namespace DeepLearningFramework
                  * @param[out] out input * weights + bias
                  * @param[in] x Values on which to apply weights and biases.
                  */
-                void forward(std::vector<float>& out, const std::vector<float>& x);
+                void forward(Eigen::MatrixXf& out, const Eigen::MatrixXf& x) override;
 
                 /**
                  * Backward pass of the Linear layer.
@@ -39,7 +39,10 @@ namespace DeepLearningFramework
                  * @param[out] ddout input * weights
                  * @param[in] dout Values on which to apply weights and biases.
                  */
-                void backward(std::vector<float>& ddout, const std::vector<float>& dout);
+                void backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout) override;
+
+                /* Print description of Linear layer class */
+                void printDescription() override;
 
                 /**
                  * Set learning rate used to update weights and bias.
@@ -50,9 +53,6 @@ namespace DeepLearningFramework
 
                 /** Get the number of parameters of the Linear layer. */
                 void getParametersCount();
-
-                /* Print description of Linear layer class */
-                void printDescription();
 
             private:
 
@@ -65,11 +65,11 @@ namespace DeepLearningFramework
 
                 std::string mType = "Layer";
                 std::string mName = "Linear";
-                std::vector<float> mForwardInput;
+                Eigen::MatrixXf mForwardInput;
                 int mInputFeaturesNumber = -1;
                 int mOutputFeaturesNumber = -1;
-                std::vector<float> mWeights;
-                std::vector<float> mBias;
+                Eigen::MatrixXf mWeights;
+                Eigen::MatrixXf mBias;
         };
     };
 }; // namespace DeepLearningFramework
