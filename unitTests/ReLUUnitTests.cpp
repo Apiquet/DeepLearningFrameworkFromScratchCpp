@@ -76,7 +76,7 @@ void testBackwardPass(Activations::ReLU& reluActivation)
             std::cout << "KO" << std::endl;
     }
     else
-        std::cout << "KO" << std::endl;
+        std::cout << "KO Forward" << std::endl;
 }
 
 int main()
