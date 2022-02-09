@@ -54,6 +54,9 @@ namespace DeepLearningFramework
                 /** Get the number of parameters of the Linear layer. */
                 void getParametersCount();
 
+                /** set weights and bias for unit testings purpose */
+                void setWeightsAndBias(Eigen::MatrixXf& weights, const Eigen::MatrixXf& bias);
+
             private:
 
                 /**
