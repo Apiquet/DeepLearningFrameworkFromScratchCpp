@@ -43,6 +43,8 @@ namespace DeepLearningFramework
                 /* Print description of Softmax activation class */
                 void printDescription() override;
 
+            private:
+
                 /**
                  * Softmax equation implementation.
                  *
@@ -51,10 +53,9 @@ namespace DeepLearningFramework
                  */
                 void equation(Eigen::MatrixXf& y, const Eigen::MatrixXf& x);
 
-            private:
                 std::string mType = "Activation";
                 std::string mName = "Softmax";
-                Eigen::MatrixXf mForwardInput;
+                Eigen::MatrixXf mForwardInputWithSoftmaxApplied;
         };
     };
     
