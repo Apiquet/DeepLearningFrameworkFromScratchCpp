@@ -8,16 +8,17 @@ using namespace DeepLearningFramework;
 
 int main()
 {
-    /*Layers::Linear linearLayer((int)2, (int)2);
-    Activations::ReLU reluActivation;
-    Activations::Softmax softmaxActivation;
+    std::vector<Module*> model;
+    model.emplace_back(new Layers::Linear((int)2, (int)50));
+    model.emplace_back(new Activations::ReLU());
+    model.emplace_back(new Layers::Linear((int)50, (int)50));
+    model.emplace_back(new Activations::ReLU());
+    model.emplace_back(new Layers::Linear((int)50, (int)2));
+    model.emplace_back(new Activations::Softmax());
+    
     Losses::MSE mseLoss;
 
-    Sequential sequential;
+    Sequential sequential(model, mseLoss);
 
     sequential.printDescription();
-    linearLayer.printDescription();
-    reluActivation.printDescription();
-    softmaxActivation.printDescription();
-    mseLoss.printDescription();*/
 }
