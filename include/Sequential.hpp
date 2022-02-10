@@ -34,10 +34,10 @@ namespace DeepLearningFramework
             /**
              * Apply forward pass for each layer in sequence.
              *
-             * @param[out] out neural network result
-             * @param[in] x data on which to apply the model (all layers in sequence).
+             * @param[in/out] x data on which to apply the model (all layers in sequence).
+             * Modified with neural network result
              */
-            void forward(std::vector<float>& out, const std::vector<float>& x);
+            void forward(Eigen::MatrixXf& x);
 
             /**
              * Calculate loss and apply backward pass for each layer in reverse order.
@@ -46,7 +46,7 @@ namespace DeepLearningFramework
              * @param[in] y target results.
              * @param[in] yPred obtained results from the neural network.
              */
-            void backward(std::vector<float>& loss, const std::vector<float>& y, const std::vector<float>& yPred);
+            void backward(float& loss, const Eigen::MatrixXf& y, Eigen::MatrixXf& yPred);
 
             /* Print description of each module in sequence */
             void printDescription();

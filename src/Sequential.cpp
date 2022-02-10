@@ -14,14 +14,24 @@ Sequential::Sequential(std::vector<Module*>& model, Losses::MSE loss)
     mLoss = loss;
 }
 
-void Sequential::forward(std::vector<float>& out, const std::vector<float>& x)
+void Sequential::forward(Eigen::MatrixXf& x)
 {
-    std::cout << "Forward!" << std::endl;
+    std::vector<Module*>::iterator it;
+    for(it = mModel.begin(); it != mModel.end(); it++)
+        (*it)->forward(x, x);
 }
 
-void Sequential::backward(std::vector<float>& loss, const std::vector<float>& y, const std::vector<float>& yPred)
+void Sequential::backward(float& loss, const Eigen::MatrixXf& y, Eigen::MatrixXf& yPred)
 {
-    std::cout << "Backward!" << std::endl;
+    // calculate loss
+    mLoss.forward(loss, y, yPred);
+
+    // back propagation
+    Eigen::MatrixXf lossDerivative;
+    mLoss.backward(lossDerivative, y, yPred);
+    std::vector<Module*>::iterator it;
+    for(it = mModel.begin(); it != mModel.end(); it++)
+        (*it)->backward(lossDerivative, lossDerivative);
 }
 
 void Sequential::setLR(float lr)
