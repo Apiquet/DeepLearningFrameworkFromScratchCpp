@@ -8,8 +8,11 @@
 
 using namespace DeepLearningFramework;
 
-template<class T>
-Sequential::Sequential(std::vector<Module>& model, T loss){}
+Sequential::Sequential(std::vector<Module*>& model, Losses::MSE loss)
+{
+    mModel = model;
+    mLoss = loss;
+}
 
 void Sequential::forward(std::vector<float>& out, const std::vector<float>& x)
 {
@@ -23,7 +26,12 @@ void Sequential::backward(std::vector<float>& loss, const std::vector<float>& y,
 
 void Sequential::printDescription()
 {
-    std::cout << "I am a Sequential class!" << std::endl;
+    std::cout << "Model:" << std::endl;
+    std::vector<Module*>::iterator it;
+    for(it = mModel.begin(); it != mModel.end(); it++)
+        (*it)->printDescription();
+    std::cout << "\nWith loss:" << std::endl;
+    mLoss.printDescription();
 }
 
 void Sequential::setLR(float lr){}

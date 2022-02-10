@@ -5,6 +5,7 @@
 #pragma once
 
 #include "Module.hpp"
+#include "MSE.hpp"
 
 #include <iostream>
 #include <vector>
@@ -19,12 +20,16 @@ namespace DeepLearningFramework
      * forward: apply forward pass for each module in sequence
      * backward: calculate loss and apply backward pass for each layer in reverse order.
      */
-    class Sequential: public Module
+    class Sequential
     {
         public:
-            template<class T>
-            Sequential(std::vector<Module>& model, T loss);
-            ~Sequential() = default;
+            Sequential(std::vector<Module*>& model, Losses::MSE loss);
+            ~Sequential()
+            {
+                std::vector<Module*>::iterator it;
+                for(it = mModel.begin(); it != mModel.end(); it++)
+                    delete (*it);
+            }
 
             /**
              * Apply forward pass for each layer in sequence.
@@ -60,6 +65,7 @@ namespace DeepLearningFramework
             // type, name, neural network
             std::string mType = "Module";
             std::string mName = "Sequential";
-            std::vector<Module> mModel;
+            std::vector<Module*> mModel;
+            Losses::MSE mLoss;
     };    
 }; // namespace DeepLearningFramework
