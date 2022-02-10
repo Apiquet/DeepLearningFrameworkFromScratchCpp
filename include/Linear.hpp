@@ -54,8 +54,14 @@ namespace DeepLearningFramework
                 /** Get the number of parameters of the Linear layer. */
                 void getParametersCount();
 
+                /** get weights */
+                Eigen::MatrixXf getWeights();
+
+                /** get bias */
+                Eigen::MatrixXf getBias();
+
                 /** set weights and bias for unit testings purpose */
-                void setWeightsAndBias(Eigen::MatrixXf& weights, const Eigen::MatrixXf& bias);
+                void setWeightsAndBias(const Eigen::MatrixXf& weights, const Eigen::MatrixXf& bias);
 
             private:
 
@@ -73,6 +79,7 @@ namespace DeepLearningFramework
                 int mOutputFeaturesNumber = -1;
                 Eigen::MatrixXf mWeights;
                 Eigen::MatrixXf mBias;
+                float mLR = 0.01f;
         };
     };
 }; // namespace DeepLearningFramework

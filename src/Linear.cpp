@@ -27,7 +27,12 @@ void Linear::forward(Eigen::MatrixXf& out, const Eigen::MatrixXf& x)
 
 void Linear::backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout)
 {
-    std::cout << "Backward!" << std::endl;
+    // calculate output
+    ddout = dout * mWeights.transpose();
+
+    // update weights and bias
+    mWeights = mWeights.array() - mLR * (mForwardInput.transpose() * dout).array();
+    mBias = mBias.array() - mLR * dout.rowwise().mean().array();
 }
 
 void Linear::printDescription()
@@ -35,11 +40,15 @@ void Linear::printDescription()
     std::cout << "I am a Linear Layer!" << std::endl;
 }
 
-void Linear::setLR(float lr){}
+void Linear::setLR(float lr){ mLR = lr;}
 
 void Linear::getParametersCount(){}
 
-void Linear::setWeightsAndBias(Eigen::MatrixXf& weights, const Eigen::MatrixXf& bias)
+Eigen::MatrixXf Linear::getWeights(){ return mWeights;}
+
+Eigen::MatrixXf Linear::getBias(){ return mBias;}
+
+void Linear::setWeightsAndBias(const Eigen::MatrixXf& weights, const Eigen::MatrixXf& bias)
 {
     mWeights = weights;
     mBias = bias;
