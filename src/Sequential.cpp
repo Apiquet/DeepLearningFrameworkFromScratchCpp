@@ -31,14 +31,27 @@ void Sequential::setLR(float lr)
         (*it)->setLR(lr);
 }
 
+uint32_t Sequential::getParametersCount()
+{
+    uint32_t parametersCount = 0;
+    std::vector<Module*>::iterator it;
+    for(it = mModel.begin(); it != mModel.end(); it++)
+        parametersCount += (*it)->getParametersCount();
+    return parametersCount;
+}
+
 void Sequential::printDescription()
 {
+    // layer description
     std::cout << "Model:" << std::endl;
     std::vector<Module*>::iterator it;
     for(it = mModel.begin(); it != mModel.end(); it++)
         (*it)->printDescription();
+
+    // loss
     std::cout << "\nWith loss:" << std::endl;
     mLoss.printDescription();
-}
 
-void Sequential::getParametersCount(){}
+    // parameters count
+    std::cout << "\nNumber of parameters:" << this->getParametersCount() << std::endl;
+}

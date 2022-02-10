@@ -38,13 +38,17 @@ void Linear::backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout)
 void Linear::printDescription()
 {
     std::cout << "Linear Layer [" << mInputFeaturesNumber
-              << ", " << mOutputFeaturesNumber << "], " 
-              << "learning rate: " << mLR << std::endl;
+              << ", " << mOutputFeaturesNumber << "], "
+              << "parameters: " << this->getParametersCount()
+              << ", learning rate: " << mLR  << std::endl; 
 }
 
 void Linear::setLR(float lr){ mLR = lr;}
 
-void Linear::getParametersCount(){}
+uint32_t Linear::getParametersCount()
+{
+    return mInputFeaturesNumber*mOutputFeaturesNumber + mOutputFeaturesNumber;
+}
 
 Eigen::MatrixXf Linear::getWeights(){ return mWeights;}
 

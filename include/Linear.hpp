@@ -52,7 +52,7 @@ namespace DeepLearningFramework
                 void setLR(float lr);
 
                 /** Get the number of parameters of the Linear layer. */
-                void getParametersCount();
+                uint32_t getParametersCount();
 
                 /** get weights */
                 Eigen::MatrixXf getWeights();

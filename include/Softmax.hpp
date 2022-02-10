@@ -46,6 +46,9 @@ namespace DeepLearningFramework
                 /* Override set learning rate */
                 void setLR(float lr) override{}
 
+                /* Override getParametersCount */
+                uint32_t getParametersCount() override{ return 0;}
+
             private:
 
                 /**

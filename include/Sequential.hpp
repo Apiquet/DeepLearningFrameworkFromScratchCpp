@@ -59,7 +59,7 @@ namespace DeepLearningFramework
             void setLR(float lr);
 
             /** Get the number of parameters of the model. */
-            void getParametersCount();
+            uint32_t getParametersCount();
 
         private:
             // type, name, neural network

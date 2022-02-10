@@ -20,5 +20,7 @@ namespace DeepLearningFramework
             virtual void printDescription() = 0;
 
             virtual void setLR(float lr) = 0;
+
+            virtual uint32_t getParametersCount() = 0;
     };
 }; // namespace DeepLearningFramework
