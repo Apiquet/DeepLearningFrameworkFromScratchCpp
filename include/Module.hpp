@@ -18,5 +18,7 @@ namespace DeepLearningFramework
             virtual void backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout) = 0;
 
             virtual void printDescription() = 0;
+
+            virtual void setLR(float lr) = 0;
     };
 }; // namespace DeepLearningFramework

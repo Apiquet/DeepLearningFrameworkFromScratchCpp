@@ -24,6 +24,13 @@ void Sequential::backward(std::vector<float>& loss, const std::vector<float>& y,
     std::cout << "Backward!" << std::endl;
 }
 
+void Sequential::setLR(float lr)
+{
+    std::vector<Module*>::iterator it;
+    for(it = mModel.begin(); it != mModel.end(); it++)
+        (*it)->setLR(lr);
+}
+
 void Sequential::printDescription()
 {
     std::cout << "Model:" << std::endl;
@@ -33,7 +40,5 @@ void Sequential::printDescription()
     std::cout << "\nWith loss:" << std::endl;
     mLoss.printDescription();
 }
-
-void Sequential::setLR(float lr){}
 
 void Sequential::getParametersCount(){}

@@ -43,6 +43,9 @@ namespace DeepLearningFramework
                 /* Print description of ReLU activation class */
                 void printDescription() override;
 
+                /* Override set learning rate */
+                void setLR(float lr) override{}
+
             private:
                 std::string mType = "Activation";
                 std::string mName = "ReLU";

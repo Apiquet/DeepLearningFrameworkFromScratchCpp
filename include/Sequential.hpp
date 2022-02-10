@@ -52,9 +52,9 @@ namespace DeepLearningFramework
             void printDescription();
 
             /**
-             * Set learning rate used to update weights and bias.
+             * Set learning rate used to update weights for all modules
              *
-             * @param lr learning rate to use.
+             * @param[in] lr learning rate to use.
              */
             void setLR(float lr);
 

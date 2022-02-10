@@ -21,4 +21,5 @@ int main()
     Sequential sequential(model, mseLoss);
 
     sequential.printDescription();
+    sequential.setLR(0.1);
 }
