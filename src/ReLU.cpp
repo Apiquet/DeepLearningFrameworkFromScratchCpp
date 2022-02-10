@@ -23,5 +23,5 @@ void ReLU::backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout)
 
 void ReLU::printDescription()
 {
-    std::cout << "I am a ReLU activation!" << std::endl;
+    std::cout << "ReLU activation" << std::endl;
 }

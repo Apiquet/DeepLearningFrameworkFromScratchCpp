@@ -25,7 +25,7 @@ void Softmax::backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout)
 
 void Softmax::printDescription()
 {
-    std::cout << "I am a Softmax activation!" << std::endl;
+    std::cout << "Softmax activation" << std::endl;
 }
 
 void Softmax::equation(Eigen::MatrixXf& y, const Eigen::MatrixXf& x)

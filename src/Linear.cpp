@@ -37,7 +37,8 @@ void Linear::backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout)
 
 void Linear::printDescription()
 {
-    std::cout << "I am a Linear Layer!" << std::endl;
+    std::cout << "Linear Layer [" << mInputFeaturesNumber
+              << ", " << mOutputFeaturesNumber << "]" <<std::endl;
 }
 
 void Linear::setLR(float lr){ mLR = lr;}

@@ -22,5 +22,5 @@ void MSE::backward(Eigen::MatrixXf& dloss, const Eigen::MatrixXf& y, const Eigen
 
 void MSE::printDescription()
 {
-    std::cout << "I am a MSE loss function!" << std::endl;
+    std::cout << "MSE loss" << std::endl;
 }
