@@ -2,9 +2,11 @@
 
 using namespace DeepLearningFramework;
 
-void testForwardPass(Activations::ReLU& reluActivation)
+void reluActivationForwardPassTest()
 {
     std::cout << "Forward test:" << std::endl;
+
+    Activations::ReLU reluActivation;
 
     Eigen::MatrixXf x {
       {-9.f, -5.f, 0.f, 1.f, 2.f,  8.f},
@@ -23,15 +25,22 @@ void testForwardPass(Activations::ReLU& reluActivation)
     Eigen::MatrixXf out;
     reluActivation.forward(out, x);
 
-    if(target.isApprox(out))
-        std::cout << "OK" << std::endl;
-    else
-        std::cout << "KO" << std::endl;
+    if(!target.isApprox(out))
+    {
+        std::cout << "Result KO" << std::endl;
+        std::cout << "Expect: " << target << std::endl;
+        std::cout << "Got: " << out << std::endl;
+        return;
+    }
+
+    std::cout << "OK" << std::endl;
 }
 
-void testBackwardPass(Activations::ReLU& reluActivation)
+void reluActivationBackwardPassTest()
 {
     std::cout << "Backward test:" << std::endl;
+
+    Activations::ReLU reluActivation;
 
     // forward input
     Eigen::MatrixXf forwardX {
@@ -39,12 +48,6 @@ void testBackwardPass(Activations::ReLU& reluActivation)
       {9.f,  -5.f, 0.f, 1.f,  -2.f, -8.f},
       {-4.f, 5.f,  8.f, -1.f, 2.f,  -8.f},
       {-2.f, -5.f, 0.f, 4.f,  -2.f, 8.f},
-    };
-    Eigen::MatrixXf forwardTarget {
-      {3.f, 0.f, 0.f, 1.f, 2.f, 7.f},
-      {9.f, 0.f, 0.f, 1.f, 0.f, 0.f},
-      {0.f, 5.f, 8.f, 0.f, 2.f, 0.f},
-      {0.f, 0.f, 0.f, 4.f, 0.f, 8.f},
     };
 
     // backward input
@@ -61,28 +64,18 @@ void testBackwardPass(Activations::ReLU& reluActivation)
         {0.f,  0.f,  0.f,  4.f, 0.f,  -8.f},
     };
 
-    //ddout = (mForwardInput.array() < 0).select(0, dout);
-
     Eigen::MatrixXf out;
     reluActivation.forward(out, forwardX);
 
-    if(forwardTarget.isApprox(out))
+    reluActivation.backward(out, backwardX);
+
+    if(!backwardTarget.isApprox(out))
     {
-        reluActivation.backward(out, backwardX);
-
-        if(backwardTarget.isApprox(out))
-            std::cout << "OK" << std::endl;
-        else
-            std::cout << "KO" << std::endl;
+        std::cout << "Result KO" << std::endl;
+        std::cout << "Expect: " << backwardTarget << std::endl;
+        std::cout << "Got: " << out << std::endl;
+        return;
     }
-    else
-        std::cout << "KO Forward" << std::endl;
-}
 
-int main()
-{
-    std::cout << "ReLU activation unit tests" << std::endl;
-    Activations::ReLU reluActivation;
-    testForwardPass(reluActivation);
-    testBackwardPass(reluActivation);
+    std::cout << "OK" << std::endl;
 }
