@@ -13,16 +13,16 @@ Linear::Linear(int inputFeaturesNumber, int outputFeaturesNumber)
     mInputFeaturesNumber = inputFeaturesNumber;
     mOutputFeaturesNumber = outputFeaturesNumber;
     mWeights = Eigen::MatrixXf::Random(inputFeaturesNumber, outputFeaturesNumber).normalized();
-    mBias = Eigen::MatrixXf::Random(outputFeaturesNumber, 1).normalized();
+    mBias = Eigen::MatrixXf::Random(1, outputFeaturesNumber).normalized();
 }
 
 void Linear::forward(Eigen::MatrixXf& out, const Eigen::MatrixXf& x)
 {
-    out = x * mWeights;
-    for (int col = 0; col < out.cols(); ++col) {
-        out.col(col).array() -= mBias.array();
+    mForwardInput = x;
+    out = x.matrix() * mWeights.matrix();
+    for (int row = 0; row < out.rows(); ++row) {
+        out.row(row).array() -= mBias.array();
     }
-    mForwardInput = std::move(x);
 }
 
 void Linear::backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout)
@@ -32,7 +32,7 @@ void Linear::backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout)
 
     // update weights and bias
     mWeights = mWeights.array() - mLR * (mForwardInput.transpose() * dout).array();
-    mBias = mBias.array() - mLR * dout.rowwise().mean().array();
+    mBias = mBias.array() - mLR * dout.colwise().mean().array();
 }
 
 void Linear::printDescription()
