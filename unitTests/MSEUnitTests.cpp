@@ -2,68 +2,74 @@
 
 using namespace DeepLearningFramework;
 
-void testForwardPass(Losses::MSE& mseLoss)
+void mseLossForwardPassTest()
 {
     std::cout << "Forward test:" << std::endl;
 
+    Losses::MSE mseLoss;
+
     Eigen::MatrixXf y {
-      {-2.f, -1.f, 0.f},
-      {3.f,  -2.f, 0.f},
-      {0.f, 1.f,  1.f},
+      {1.f, 0.f},
+      {1.f, 0.f},
+      {0.f, 1.f},
     };
 
     Eigen::MatrixXf yPred {
-      {0.f, -1.f, 0.5f},
-      {3.f,  -1.f, 0.f},
-      {0.f, 1.f,  -2.f},
+      {0.4f, 0.6f},
+      {0.2f,  0.8f},
+      {0.9f, 0.1f},
     };
 
-    float target = 4.75f; 
+    float target = 1.20667f; 
 
     float out;
     mseLoss.forward(out, y, yPred);
 
-    if(target == out)
-        std::cout << "OK" << std::endl;
-    else
-        std::cout << "KO" << std::endl;
+    if(target > out + 0.0001f || target < out - 0.0001f)
+    {
+        std::cout << "Loss value KO" << std::endl;
+        std::cout << "Expect: " << target << std::endl;
+        std::cout << "Got: " << out << std::endl;
+        return;
+    }
+
+    std::cout << "OK" << std::endl;
 }
 
-void testBackwardPass(Losses::MSE& mseLoss)
+void mseLossBackwardPassTest()
 {
     std::cout << "Backward test:" << std::endl;
 
+    Losses::MSE mseLoss;
+
     Eigen::MatrixXf y {
-      {-3.f, -1.f, 0.f},
-      {3.f,  -2.f, 0.f},
-      {0.f, 1.f,  1.f},
+      {1.f, 0.f},
+      {1.f, 0.f},
+      {0.f, 1.f},
     };
 
     Eigen::MatrixXf yPred {
-      {0.f, -1.f,  12.f},
-      {3.f,  16.f, 0.f},
-      {0.f, 1.f,  -2.f},
+      {0.4f, 0.6f},
+      {0.2f,  0.8f},
+      {0.9f, 0.1f},
     };
 
     Eigen::MatrixXf target {
-      {2.f, 0.f,  8.f},
-      {0.f, 12.f, 0.f},
-      {0.f, 0.f, -2.f},
+      {-0.4f, 0.4f},
+      {-0.533333f, 0.533333f},
+      {0.6f, -0.6f},
     };
 
     Eigen::MatrixXf out;
     mseLoss.backward(out, y, yPred);
 
-    if(target.isApprox(out))
-        std::cout << "OK" << std::endl;
-    else
-        std::cout << "KO" << std::endl;
-}
+    if(!target.isApprox(out))
+    {
+        std::cout << "Derivative KO" << std::endl;
+        std::cout << "Expect: " << target << std::endl;
+        std::cout << "Got: " << out << std::endl;
+        return;
+    }
 
-int main()
-{
-    std::cout << "MSE loss unit tests" << std::endl;
-    Losses::MSE mseLoss;
-    testForwardPass(mseLoss);
-    testBackwardPass(mseLoss);
+    std::cout << "OK" << std::endl;
 }
