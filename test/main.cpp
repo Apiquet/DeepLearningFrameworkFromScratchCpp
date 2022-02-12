@@ -4,6 +4,7 @@
 #include "ReLU.hpp"
 #include "Softmax.hpp"
 #include "MSE.hpp"
+#include "Metrics.hpp"
 
 using namespace DeepLearningFramework;
 
@@ -28,9 +29,13 @@ int main()
     float loss = 0;
 
     Eigen::MatrixXf features, labels;
-    DataBuilder::generateDiscSet(features, labels, 1000, 0.5);
+    DataBuilder::generateDiscSet(features, labels, 1000, 0.3);
 
     sequential.forward(features);
     sequential.backward(loss, labels, features);
     std::cout << "Loss: " << loss << std::endl;
+
+    float accuracy = 0.f;
+    Metrics::accuracy(accuracy, features, labels);
+    std::cout << "Accuracy: " << accuracy << std::endl;
 }
