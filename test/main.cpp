@@ -12,9 +12,8 @@ using namespace DeepLearningFramework;
 int main()
 {
     /* Model creation */
-
     std::vector<Module*> layers;
-    int inputFeaturesNumber = 2, outputFeaturesNumber = 2, hiddenSize = 5;
+    int inputFeaturesNumber = 2, outputFeaturesNumber = 2, hiddenSize = 10;
     layers.emplace_back(new Layers::Linear((int)inputFeaturesNumber, (int)hiddenSize));
     layers.emplace_back(new Activations::ReLU());
     layers.emplace_back(new Layers::Linear((int)hiddenSize, (int)outputFeaturesNumber));
@@ -26,12 +25,12 @@ int main()
     model.printDescription();
 
     /* Train params */
-    float learningRate = 1.f;
+    float learningRate = 0.03f;
     // number of train and test samples
-    uint32_t samplesCount = 1000;
+    uint32_t samplesCount = 2000;
     std::vector<float> trainLossHistory, trainAccuracyHistory, testLossHistory, testAccuracyHistory;
-    uint32_t epochsCount = 1000, verboseFrequence = 1;
-    constexpr auto batchSize = 1000;
+    uint32_t epochsCount = 200, verboseFrequence = 1;
+    constexpr auto batchSize = 64;
 
     // Update learning rate for model
     model.setLR(learningRate);

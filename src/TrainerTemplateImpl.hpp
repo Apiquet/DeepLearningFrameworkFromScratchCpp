@@ -29,8 +29,8 @@ void Trainer::trainModel(
         for (int batch_idx = 0; batch_idx < batchesCount; batch_idx++)
         {
             float batchLoss = 0.f;
-            Eigen::MatrixXf batchFeatures = trainFeatures;//.block<batchSize, 2>(batch_idx*batchSize, 0);
-            Eigen::MatrixXf batchTarget = trainTarget;//.block<batchSize, 2>(batch_idx*batchSize, 0);
+            Eigen::MatrixXf batchFeatures = trainFeatures.block<batchSize, 2>(batch_idx*batchSize, 0);
+            Eigen::MatrixXf batchTarget = trainTarget.block<batchSize, 2>(batch_idx*batchSize, 0);
             model.forward(batchFeatures);
             model.backward(batchLoss, batchTarget, batchFeatures);
             loss += batchLoss;
