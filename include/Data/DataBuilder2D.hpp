@@ -1,5 +1,5 @@
 /**
- * Build Data class definition
+ * 2D Data builder class definition
 */
 
 #pragma once
@@ -16,11 +16,11 @@ namespace DeepLearningFramework
      * 
      * generateDiscSet: generate 2D data with label 1 inside a circle, otherwise 0
      */
-    class DataBuilder
+    class DataBuilder2D
     {
         public:
-            DataBuilder() = delete;
-            ~DataBuilder() = delete;
+            DataBuilder2D() = delete;
+            ~DataBuilder2D() = delete;
 
             /**
              * generateDiscSet static method

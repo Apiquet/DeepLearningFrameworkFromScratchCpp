@@ -14,11 +14,11 @@ namespace DeepLearningFramework
      * 
      * trainModel: train a model
      */
-    class Trainer
+    class Trainer2D
     {
         public:
-            Trainer() = delete;
-            ~Trainer() = delete;
+            Trainer2D() = delete;
+            ~Trainer2D() = delete;
 
             /**
              * trainModel static method
@@ -68,4 +68,4 @@ namespace DeepLearningFramework
     };
 }; // namespace DeepLearningFramework
 
-#include "TrainerTemplateImpl.hpp"
+#include "Trainer2DTemplateImpl.hpp"

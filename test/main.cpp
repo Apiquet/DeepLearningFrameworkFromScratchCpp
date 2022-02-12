@@ -1,8 +1,8 @@
 #include "Sequential.hpp"
-#include "DataBuilder.hpp"
+#include "DataBuilder2D.hpp"
 #include "Linear.hpp"
 #include "ReLU.hpp"
-#include "Trainer.hpp"
+#include "Trainer2D.hpp"
 #include "Softmax.hpp"
 #include "MSE.hpp"
 #include "Metrics.hpp"
@@ -37,12 +37,12 @@ int main()
 
     /* Generate train and test sets */
     Eigen::MatrixXf trainTarget, trainFeatures;
-    DataBuilder::generateDiscSet(trainTarget, trainFeatures, samplesCount, 0.3);
+    DataBuilder2D::generateDiscSet(trainTarget, trainFeatures, samplesCount, 0.3);
     Eigen::MatrixXf testTarget, testFeatures;
-    DataBuilder::generateDiscSet(testTarget, testFeatures, samplesCount, 0.3);
+    DataBuilder2D::generateDiscSet(testTarget, testFeatures, samplesCount, 0.3);
 
     // Train model
-    Trainer::trainModel<batchSize>(
+    Trainer2D::trainModel<batchSize>(
       trainLossHistory,
       trainAccuracyHistory,
       testLossHistory,

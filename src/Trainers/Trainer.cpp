@@ -2,11 +2,11 @@
  * Trainer class implementation
 */
 
-#include "Trainer.hpp"
+#include "Trainer2D.hpp"
 
 using namespace DeepLearningFramework;
 
-void Trainer::addAccuracy(std::vector<float>& accuracyHistory, Sequential& model, const Eigen::MatrixXf& labels, const Eigen::MatrixXf& features)
+void Trainer2D::addAccuracy(std::vector<float>& accuracyHistory, Sequential& model, const Eigen::MatrixXf& labels, const Eigen::MatrixXf& features)
 {
     Eigen::MatrixXf tmpFeatures = features;
     model.forward(tmpFeatures);

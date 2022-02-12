@@ -1,11 +1,11 @@
 /**
- * Template function from Trainer class implementation
+ * Template function from Trainer2D class implementation
 */
 
 using namespace DeepLearningFramework;
 
 template<uint32_t batchSize>
-void Trainer::trainModel(
+void Trainer2D::trainModel(
     std::vector<float> trainLossHistory,
     std::vector<float> trainAccuracyHistory,
     std::vector<float> testLossHistory,
