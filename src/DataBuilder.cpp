@@ -1,15 +1,12 @@
 /**
  * Build Data class implementation
 */
-#define _USE_MATH_DEFINES
 
 #include "DataBuilder.hpp"
 
-#include <math.h>
-
 using namespace DeepLearningFramework;
 
-void DataBuilder::generateDiscSet(Eigen::MatrixXf& features, Eigen::MatrixXf& labels, uint32_t samplesCount, float discRadius)
+void DataBuilder::generateDiscSet(Eigen::MatrixXf& labels, Eigen::MatrixXf& features, uint32_t samplesCount, float discRadius)
 {
     features = Eigen::MatrixXf::Random(samplesCount, 2);
     labels = Eigen::MatrixXf(samplesCount, 2);

@@ -23,7 +23,7 @@ void mseLossForwardPassTest()
     float target = 1.20667f; 
 
     float out;
-    mseLoss.forward(out, y, yPred);
+    mseLoss.forward(out, yPred, y);
 
     if(target > out + 0.0001f || target < out - 0.0001f)
     {
@@ -61,7 +61,7 @@ void mseLossBackwardPassTest()
     };
 
     Eigen::MatrixXf out;
-    mseLoss.backward(out, y, yPred);
+    mseLoss.backward(out, yPred, y);
 
     if(!target.isApprox(out))
     {

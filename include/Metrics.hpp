@@ -25,9 +25,9 @@ namespace DeepLearningFramework
              * accuracy: count of good predictions / number of predictions
              *
              * @param[out] accuracy accuracy in range [0.f, 1.f]
-             * @param[in] features random number in range [0.f, 1.f]
-             * @param[in] labels one-hot encoded labels, [0, 1] inside radius otherwise [1, 0]
+             * @param[in] labels one-hot encoded labels in format [N, 2]
+             * @param[in] features prediction in format [N, 2]
              */
-            static void accuracy(float& accuracy, const Eigen::MatrixXf& features, const Eigen::MatrixXf& labels);
+            static void accuracy(float& accuracy, const Eigen::MatrixXf& labels, const Eigen::MatrixXf& features);
     };
 }; // namespace DeepLearningFramework

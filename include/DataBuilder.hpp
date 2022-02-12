@@ -4,8 +4,10 @@
 
 #pragma once
 
+#define _USE_MATH_DEFINES
+
 #include <Eigen/Dense>
-#include <iostream>
+#include <math.h>
 
 namespace DeepLearningFramework
 {
@@ -26,11 +28,11 @@ namespace DeepLearningFramework
              * Generate features in [0.f; 1.f] and labels in function of radius value
              * One-hot encoded labels [0, 1] inside radius, otherwise [1, 0]
              *
-             * @param[out] features random number in range [0.f, 1.f]
              * @param[out] labels one-hot encoded labels, [0, 1] inside radius otherwise [1, 0]
+             * @param[out] features random number in range [0.f, 1.f]
              * @param[in] samplesCount number of samples to generate.
              * @param[in] discRadius radius of the circle in range [0.f, 1.f].
              */
-            static void generateDiscSet(Eigen::MatrixXf& features, Eigen::MatrixXf& labels, uint32_t samplesCount, float discRadius);
+            static void generateDiscSet(Eigen::MatrixXf& labels, Eigen::MatrixXf& features, uint32_t samplesCount, float discRadius);
     };
 }; // namespace DeepLearningFramework

@@ -36,6 +36,6 @@ int main()
     std::cout << "Loss: " << loss << std::endl;
 
     float accuracy = 0.f;
-    Metrics::accuracy(accuracy, features, labels);
+    Metrics::accuracy(accuracy, labels, features);
     std::cout << "Accuracy: " << accuracy << std::endl;
 }

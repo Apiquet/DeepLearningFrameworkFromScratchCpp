@@ -6,7 +6,7 @@
 
 using namespace DeepLearningFramework;
 
-void Metrics::accuracy(float& accuracy, const Eigen::MatrixXf& features, const Eigen::MatrixXf& labels)
+void Metrics::accuracy(float& accuracy, const Eigen::MatrixXf& labels, const Eigen::MatrixXf& features)
 {
     accuracy = 0.f;
     for(int i = 0; i < features.rows(); i++)
