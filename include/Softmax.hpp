@@ -63,6 +63,5 @@ namespace DeepLearningFramework
                 std::string mName = "Softmax";
                 Eigen::MatrixXf mForwardInputWithSoftmaxApplied;
         };
-    };
-    
+    }; // namespace Activations    
 }; // namespace DeepLearningFramework

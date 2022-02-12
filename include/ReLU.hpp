@@ -54,6 +54,5 @@ namespace DeepLearningFramework
                 std::string mName = "ReLU";
                 Eigen::MatrixXf mForwardInput;
         };
-    };
-    
+    }; // namespace Activations    
 }; // namespace DeepLearningFramework

@@ -7,7 +7,6 @@
 #include "Module.hpp"
 
 #include <iostream>
-#include <vector>
 
 namespace DeepLearningFramework
 {
@@ -81,5 +80,5 @@ namespace DeepLearningFramework
                 Eigen::MatrixXf mBias;
                 float mLR = 0.01f;
         };
-    };
+    }; // namespace Layers
 }; // namespace DeepLearningFramework

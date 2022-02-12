@@ -49,6 +49,5 @@ namespace DeepLearningFramework
                 std::string mType = "Loss";
                 std::string mName = "MSE";
         };
-    };
-    
+    }; // namespace Losses    
 }; // namespace DeepLearningFramework
