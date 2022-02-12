@@ -50,7 +50,7 @@ namespace DeepLearningFramework
                 const Eigen::MatrixXf& testTarget,
                 const Eigen::MatrixXf& testFeatures,
                 uint32_t batchSize,
-                uint32_t verboseFrequence = 1
+                uint32_t verboseFrequence
             );
         private:
 
@@ -60,9 +60,10 @@ namespace DeepLearningFramework
              * Train a model for n epoch on specified data
              *
              * @param[out] accuracyHistory vector in which to add the accuracy
+             * @param[in] model model to score wit haccuracy metric
              * @param[in] labels labels
              * @param[in] features features
              */
-            static void addAccuracy(std::vector<float> accuracyHistory, const Eigen::MatrixXf& labels, const Eigen::MatrixXf& features);
+            static void addAccuracy(std::vector<float>& accuracyHistory, Sequential& model, const Eigen::MatrixXf& labels, const Eigen::MatrixXf& features);
     };
 }; // namespace DeepLearningFramework
