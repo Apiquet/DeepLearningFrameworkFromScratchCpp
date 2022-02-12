@@ -15,26 +15,25 @@ int main()
     int inputFeaturesNumber = 2, outputFeaturesNumber = 2, hiddenSize = 5;
     layers.emplace_back(new Layers::Linear((int)inputFeaturesNumber, (int)hiddenSize));
     layers.emplace_back(new Activations::ReLU());
-    layers.emplace_back(new Layers::Linear((int)hiddenSize, (int)hiddenSize));
-    layers.emplace_back(new Activations::ReLU());
     layers.emplace_back(new Layers::Linear((int)hiddenSize, (int)outputFeaturesNumber));
     layers.emplace_back(new Activations::Softmax());
     
     Losses::MSE mseLoss;
 
     Sequential model(layers, mseLoss);
-    model.setLR(0.1);
+    model.setLR(1.f);
 
     model.printDescription();
 
+    uint32_t samplesCount = 1000;
     Eigen::MatrixXf trainTarget, trainFeatures;
-    DataBuilder::generateDiscSet(trainTarget, trainFeatures, 1000, 0.3);
+    DataBuilder::generateDiscSet(trainTarget, trainFeatures, samplesCount, 0.3);
     Eigen::MatrixXf testTarget, testFeatures;
-    DataBuilder::generateDiscSet(testTarget, testFeatures, 1000, 0.3);
+    DataBuilder::generateDiscSet(testTarget, testFeatures, samplesCount, 0.3);
 
     float loss = 0;
     std::vector<float> trainLossHistory, trainAccuracyHistory, testLossHistory, testAccuracyHistory;
-    uint32_t epochsCount = 10, batchSize = 1, verboseFrequence = 1;
+    uint32_t epochsCount = 1000, batchSize = samplesCount, verboseFrequence = 1;
     Trainer::trainModel(
       trainLossHistory,
       trainAccuracyHistory,

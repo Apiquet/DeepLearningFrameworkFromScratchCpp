@@ -32,12 +32,13 @@ void Trainer::trainModel(
 {
     addAccuracy(trainAccuracyHistory, model, trainTarget, trainFeatures);
     addAccuracy(testAccuracyHistory, model, testTarget, testFeatures);
+    uint32_t batchesCount = trainFeatures.rows()/batchSize;
 
     for(int i = 0; i < epochsCount; i++)
     {
         float loss = 0.f;
         int batch_idx = 0;
-        for (batch_idx = 0; batch_idx < trainFeatures.rows(); batch_idx++)
+        for (batch_idx = 0; batch_idx < batchesCount; batch_idx++)
         {
             float batchLoss = 0.f;
             Eigen::MatrixXf batchFeatures = trainFeatures;
@@ -52,8 +53,9 @@ void Trainer::trainModel(
         loss /= batch_idx;
 
         if(i%verboseFrequence == 0)
-            std::cout << "Train accuracy: " << trainAccuracyHistory.at(i+1)
-                << ", test accuracy: " << testAccuracyHistory.at(i+1)
-                << ", loss: " << loss  << std::endl; 
+            std::cout << "Epoch: " << i
+                << ", train accuracy: " << trainAccuracyHistory.at(i+1)
+                << ", loss: " << loss
+                << ", test accuracy: " << testAccuracyHistory.at(i+1) << std::endl; 
     }
 }
