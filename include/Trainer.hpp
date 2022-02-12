@@ -38,6 +38,7 @@ namespace DeepLearningFramework
              * @param[in] batchSize batch size to use
              * @param[in] verboseFrequence display loss and metrics every N epochs (default N=1)
              */
+            template<uint32_t batchSize>
             static void trainModel(
                 std::vector<float> trainLossHistory,
                 std::vector<float> trainAccuracyHistory,
@@ -49,7 +50,6 @@ namespace DeepLearningFramework
                 const Eigen::MatrixXf& trainFeatures,
                 const Eigen::MatrixXf& testTarget,
                 const Eigen::MatrixXf& testFeatures,
-                uint32_t batchSize,
                 uint32_t verboseFrequence
             );
         private:
@@ -67,3 +67,5 @@ namespace DeepLearningFramework
             static void addAccuracy(std::vector<float>& accuracyHistory, Sequential& model, const Eigen::MatrixXf& labels, const Eigen::MatrixXf& features);
     };
 }; // namespace DeepLearningFramework
+
+#include "TrainerTemplateImpl.hpp"

@@ -11,30 +11,39 @@ using namespace DeepLearningFramework;
 
 int main()
 {
+    /* Model creation */
+
     std::vector<Module*> layers;
     int inputFeaturesNumber = 2, outputFeaturesNumber = 2, hiddenSize = 5;
     layers.emplace_back(new Layers::Linear((int)inputFeaturesNumber, (int)hiddenSize));
     layers.emplace_back(new Activations::ReLU());
     layers.emplace_back(new Layers::Linear((int)hiddenSize, (int)outputFeaturesNumber));
     layers.emplace_back(new Activations::Softmax());
-    
+
     Losses::MSE mseLoss;
 
     Sequential model(layers, mseLoss);
-    model.setLR(1.f);
-
     model.printDescription();
 
+    /* Train params */
+    float learningRate = 1.f;
+    // number of train and test samples
     uint32_t samplesCount = 1000;
+    std::vector<float> trainLossHistory, trainAccuracyHistory, testLossHistory, testAccuracyHistory;
+    uint32_t epochsCount = 1000, verboseFrequence = 1;
+    constexpr auto batchSize = 1000;
+
+    // Update learning rate for model
+    model.setLR(learningRate);
+
+    /* Generate train and test sets */
     Eigen::MatrixXf trainTarget, trainFeatures;
     DataBuilder::generateDiscSet(trainTarget, trainFeatures, samplesCount, 0.3);
     Eigen::MatrixXf testTarget, testFeatures;
     DataBuilder::generateDiscSet(testTarget, testFeatures, samplesCount, 0.3);
 
-    float loss = 0;
-    std::vector<float> trainLossHistory, trainAccuracyHistory, testLossHistory, testAccuracyHistory;
-    uint32_t epochsCount = 1000, batchSize = samplesCount, verboseFrequence = 1;
-    Trainer::trainModel(
+    // Train model
+    Trainer::trainModel<batchSize>(
       trainLossHistory,
       trainAccuracyHistory,
       testLossHistory,
@@ -45,7 +54,6 @@ int main()
       trainFeatures,
       testTarget,
       testFeatures,
-      batchSize,
-      verboseFrequence = 1
+      verboseFrequence
     );
 }
