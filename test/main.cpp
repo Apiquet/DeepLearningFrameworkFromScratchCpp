@@ -1,4 +1,5 @@
 #include "Sequential.hpp"
+#include "DataBuilder.hpp"
 #include "Linear.hpp"
 #include "ReLU.hpp"
 #include "Softmax.hpp"
@@ -26,22 +27,10 @@ int main()
 
     float loss = 0;
 
-    Eigen::MatrixXf x {
-      {-9.f, -5.f},
-      {-9.f, -5.f},
-      {-9.f, -5.f},
-      {-9.f, -5.f},
-    };
-    Eigen::MatrixXf y {
-      {0.f, 1.f},
-      {1.f, 0.f},
-      {1.f, 0.f},
-      {0.f, 1.f},
-    };
+    Eigen::MatrixXf features, labels;
+    DataBuilder::generateDiscSet(features, labels, 1000, 0.5);
 
-    sequential.forward(x);
-    std::cout << "Model output: " << x << std::endl;
-    sequential.backward(loss, y, x);
+    sequential.forward(features);
+    sequential.backward(loss, labels, features);
     std::cout << "Loss: " << loss << std::endl;
-    std::cout << "Backward output: " << x << std::endl;
 }
