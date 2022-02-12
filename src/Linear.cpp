@@ -27,12 +27,12 @@ void Linear::forward(Eigen::MatrixXf& out, const Eigen::MatrixXf& x)
 
 void Linear::backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout)
 {
-    // calculate output
-    ddout = dout * mWeights.transpose();
-
     // update weights and bias
     mWeights = mWeights.array() - mLR * (mForwardInput.transpose() * dout).array();
     mBias = mBias.array() - mLR * dout.colwise().mean().array();
+
+    // calculate output
+    ddout = dout * mWeights.transpose();
 }
 
 void Linear::printDescription()
