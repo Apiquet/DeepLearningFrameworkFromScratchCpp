@@ -1,4 +1,4 @@
-PROG = test/main
+PROG = tests/main
 CC = g++
 CPPFLAGS = -std=c++20
 
@@ -10,5 +10,5 @@ SRCS = $(foreach sdir, src, $(wildcard $(sdir)/*.cpp)) $(foreach sdir, src/*, $(
 
 print-% : ; @echo $* = $($*)
 
-main.o : test/main.cpp
+main.o :
 	$(CC) $(CPPFLAGS) $(PROG).cpp $(SRCS) -Iinclude $(INC_DIRS) -o $(PROG)
