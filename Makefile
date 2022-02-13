@@ -2,11 +2,11 @@ PROG = tests/main
 CC = g++
 CPPFLAGS = -std=c++20
 
-INCS = $(foreach sdir, include, $(wildcard $(sdir)/*)) src/Trainers
+INCS = $(wildcard include/*) src/Trainers
 
 INC_DIRS = $(addprefix -I, $(INCS))
 
-SRCS = $(foreach sdir, src, $(wildcard $(sdir)/*.cpp)) $(foreach sdir, src/*, $(wildcard $(sdir)/*.cpp))
+SRCS = $(foreach sdir, src/*, $(wildcard $(sdir)/*.cpp))
 
 print-% : ; @echo $* = $($*)
 
