@@ -11,8 +11,6 @@ namespace DeepLearningFramework
     class Module
     {
         public:
-            virtual ~Module() {} 
-
             virtual void forward(Eigen::MatrixXf& out, const Eigen::MatrixXf& x) = 0;
 
             virtual void backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout) = 0;
