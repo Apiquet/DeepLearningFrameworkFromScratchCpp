@@ -16,6 +16,8 @@ int main()
     int inputFeaturesNumber = 2, outputFeaturesNumber = 2, hiddenSize = 10;
     layers.emplace_back(new Layers::Linear((int)inputFeaturesNumber, (int)hiddenSize));
     layers.emplace_back(new Activations::ReLU());
+    layers.emplace_back(new Layers::Linear((int)hiddenSize, (int)hiddenSize));
+    layers.emplace_back(new Activations::ReLU());
     layers.emplace_back(new Layers::Linear((int)hiddenSize, (int)outputFeaturesNumber));
     layers.emplace_back(new Activations::Softmax());
 
@@ -29,7 +31,7 @@ int main()
     // number of train and test samples
     uint32_t samplesCount = 2000;
     std::vector<float> trainLossHistory, trainAccuracyHistory, testLossHistory, testAccuracyHistory;
-    uint32_t epochsCount = 200, verboseFrequence = 1;
+    uint32_t epochsCount = 100, verboseFrequence = 1;
     constexpr auto batchSize = 64;
 
     // Update learning rate for model
