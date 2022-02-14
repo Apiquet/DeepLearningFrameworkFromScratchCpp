@@ -12,8 +12,8 @@ Linear::Linear(int inputFeaturesNumber, int outputFeaturesNumber)
 {
     mInputFeaturesNumber = inputFeaturesNumber;
     mOutputFeaturesNumber = outputFeaturesNumber;
-    mWeights = Eigen::MatrixXf::Random(inputFeaturesNumber, outputFeaturesNumber).normalized();
-    mBias = Eigen::MatrixXf::Random(1, outputFeaturesNumber).normalized();
+    mWeights = Eigen::MatrixXf::Random(inputFeaturesNumber, outputFeaturesNumber);
+    mBias = Eigen::MatrixXf::Random(1, outputFeaturesNumber);
 }
 
 void Linear::forward(Eigen::MatrixXf& out, const Eigen::MatrixXf& x)

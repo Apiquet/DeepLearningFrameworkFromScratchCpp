@@ -20,7 +20,7 @@ void Softmax::backward(Eigen::MatrixXf& ddout, const Eigen::MatrixXf& dout)
 {
     Eigen::MatrixXf equationResult;
     ddout = dout.array() * (
-        mForwardInputWithSoftmaxApplied.array() * (1 - mForwardInputWithSoftmaxApplied.array()).array()).array();
+        mForwardInputWithSoftmaxApplied.array() * (1.f - mForwardInputWithSoftmaxApplied.array()).array()).array();
 }
 
 void Softmax::printDescription()
