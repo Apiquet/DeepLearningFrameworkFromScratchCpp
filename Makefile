@@ -1,6 +1,6 @@
 PROG = tests/main
 CC = g++
-CPPFLAGS = -std=c++20
+CPPFLAGS =
 
 INCS = $(wildcard include/*) src/Trainers
 
