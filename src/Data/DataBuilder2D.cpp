@@ -11,7 +11,7 @@ void DataBuilder2D::generateDiscSet(Eigen::MatrixXf& labels, Eigen::MatrixXf& fe
     features = Eigen::MatrixXf::Random(samplesCount, 2);
     labels = Eigen::MatrixXf(samplesCount, 2);
 
-    for(int i = 0; i < samplesCount; i++)
+    for(uint32_t i = 0; i < samplesCount; i++)
     {
         if(pow(features(i, 0), 2) + pow(features(i, 1), 2) / M_PI < discRadius)
         {
