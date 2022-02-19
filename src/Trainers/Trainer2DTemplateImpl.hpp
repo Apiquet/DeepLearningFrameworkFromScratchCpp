@@ -23,10 +23,10 @@ void Trainer2D::trainModel(
     addAccuracy(testAccuracyHistory, model, testTarget, testFeatures);
     uint32_t batchesCount = trainFeatures.rows()/batchSize;
 
-    for(int i = 0; i < epochsCount; i++)
+    for(uint32_t i = 0; i < epochsCount; i++)
     {
         float loss = 0.f;
-        for (int batch_idx = 0; batch_idx < batchesCount; batch_idx++)
+        for (uint32_t batch_idx = 0; batch_idx < batchesCount; batch_idx++)
         {
             float batchLoss = 0.f;
             Eigen::MatrixXf batchFeatures = trainFeatures.block<batchSize, 2>(batch_idx*batchSize, 0);
