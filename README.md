@@ -17,7 +17,9 @@ git clone https://github.com/Apiquet/DeepLearningFrameworkFromScratchCpp.git
 ```
 
 Download Eigen code from https://gitlab.com/libeigen/eigen/-/releases/3.4.0
+
 Extract downloaded zip file
+
 Copy the folder Eigen contained in extracted folder (eigen-version/Eigen) to DeepLearningFrameworkFromScratchCpp/include/
 
 ### How to run a training
