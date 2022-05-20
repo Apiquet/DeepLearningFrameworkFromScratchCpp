@@ -1,8 +1,8 @@
-#include "MSE.hpp"
+#include "UnitTestsLossesMSE.hpp"
 
 using namespace DeepLearningFramework;
 
-void mseLossForwardPassTest() {
+void Losses::UnitTestsLossesMSE::mseLossForwardPassTest() {
   std::cout << "Forward test:" << std::endl;
 
   Losses::MSE mseLoss;
@@ -34,7 +34,7 @@ void mseLossForwardPassTest() {
   std::cout << "OK" << std::endl;
 }
 
-void mseLossBackwardPassTest() {
+void Losses::UnitTestsLossesMSE::mseLossBackwardPassTest() {
   std::cout << "Backward test:" << std::endl;
 
   Losses::MSE mseLoss;
@@ -52,9 +52,9 @@ void mseLossBackwardPassTest() {
   };
 
   Eigen::MatrixXf target{
-      {-0.4f, 0.4f},
-      {-0.533333f, 0.533333f},
-      {0.6f, -0.6f},
+      {0.4f, -0.4f},
+      {0.533333f, -0.533333f},
+      {-0.6f, 0.6f},
   };
 
   Eigen::MatrixXf out;

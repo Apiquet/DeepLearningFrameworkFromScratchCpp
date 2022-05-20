@@ -1,8 +1,8 @@
-#include "Linear.hpp"
+#include "UnitTestsLayersLinear.hpp"
 
 using namespace DeepLearningFramework;
 
-void linearLayerForwardPassTest() {
+void Layers::UnitTestsLayersLinear::linearLayerForwardPassTest() {
   std::cout << "Forward test:" << std::endl;
 
   int inputFeaturesNumber = 2, outputFeaturesNumber = 4;
@@ -55,7 +55,7 @@ void linearLayerForwardPassTest() {
   std::cout << "OK" << std::endl;
 }
 
-void linearLayerBackwardPassTest() {
+void Layers::UnitTestsLayersLinear::linearLayerBackwardPassTest() {
   std::cout << "Backward test:" << std::endl;
 
   int inputFeaturesNumber = 2, outputFeaturesNumber = 4;
@@ -85,9 +85,9 @@ void linearLayerBackwardPassTest() {
   };
 
   Eigen::MatrixXf backwardTarget{
-      {-0.7f, 1.1f},
-      {0.85f, 0.11f},
-      {-0.1f, 0.27f},
+      {-0.24f, 1.32f},
+      {0.8775f, -0.4025f},
+      {0.13f, -0.59},
   };
 
   linearLayer.backward(out, backwardInput);

@@ -1,24 +1,24 @@
-#include "LinearUnitTests.cpp"
-#include "MSEUnitTests.cpp"
-#include "ReLUUnitTests.cpp"
-#include "SoftmaxUnitTests.cpp"
+#include "UnitTestsActivationsReLU.hpp"
+#include "UnitTestsActivationsSoftmax.hpp"
+#include "UnitTestsLayersLinear.hpp"
+#include "UnitTestsLossesMSE.hpp"
 
 using namespace DeepLearningFramework;
 
 int main() {
   std::cout << "Linear layer unit tests" << std::endl;
-  linearLayerForwardPassTest();
-  linearLayerBackwardPassTest();
+  Layers::UnitTestsLayersLinear::linearLayerForwardPassTest();
+  Layers::UnitTestsLayersLinear::linearLayerBackwardPassTest();
 
   std::cout << "MSE loss unit tests" << std::endl;
-  mseLossForwardPassTest();
-  mseLossBackwardPassTest();
+  Losses::UnitTestsLossesMSE::mseLossForwardPassTest();
+  Losses::UnitTestsLossesMSE::mseLossBackwardPassTest();
 
   std::cout << "ReLU activation unit tests" << std::endl;
-  reluActivationForwardPassTest();
-  reluActivationBackwardPassTest();
+  Activations::UnitTestsActivationsReLU::reluActivationForwardPassTest();
+  Activations::UnitTestsActivationsReLU::reluActivationBackwardPassTest();
 
   std::cout << "Softmax activation unit tests" << std::endl;
-  softmaxActivationForwardPassTest();
-  softmaxActivationBackwardPassTest();
+  Activations::UnitTestsActivationsSoftmax::softmaxActivationForwardPassTest();
+  Activations::UnitTestsActivationsSoftmax::softmaxActivationBackwardPassTest();
 }

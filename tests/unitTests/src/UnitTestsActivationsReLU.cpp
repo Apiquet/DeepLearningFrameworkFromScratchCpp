@@ -1,8 +1,8 @@
-#include "ReLU.hpp"
+#include "UnitTestsActivationsReLU.hpp"
 
 using namespace DeepLearningFramework;
 
-void reluActivationForwardPassTest() {
+void Activations::UnitTestsActivationsReLU::reluActivationForwardPassTest() {
   std::cout << "Forward test:" << std::endl;
 
   Activations::ReLU reluActivation;
@@ -34,7 +34,7 @@ void reluActivationForwardPassTest() {
   std::cout << "OK" << std::endl;
 }
 
-void reluActivationBackwardPassTest() {
+void Activations::UnitTestsActivationsReLU::reluActivationBackwardPassTest() {
   std::cout << "Backward test:" << std::endl;
 
   Activations::ReLU reluActivation;

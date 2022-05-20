@@ -1,8 +1,9 @@
-#include "Softmax.hpp"
+#include "UnitTestsActivationsSoftmax.hpp"
 
 using namespace DeepLearningFramework;
 
-void softmaxActivationForwardPassTest() {
+void Activations::UnitTestsActivationsSoftmax::
+    softmaxActivationForwardPassTest() {
   std::cout << "Forward test:" << std::endl;
 
   Activations::Softmax softmaxActivation;
@@ -32,7 +33,8 @@ void softmaxActivationForwardPassTest() {
   std::cout << "OK" << std::endl;
 }
 
-void softmaxActivationBackwardPassTest() {
+void Activations::UnitTestsActivationsSoftmax::
+    softmaxActivationBackwardPassTest() {
   std::cout << "Backward test:" << std::endl;
 
   Activations::Softmax softmaxActivation;
@@ -53,9 +55,9 @@ void softmaxActivationBackwardPassTest() {
   };
 
   Eigen::MatrixXf targetBackward{
-      {0.f, 0.722632f, 0.f},
-      {1.58634f, 0.f, 0.717583f},
-      {0.f, 2.11225f, 1.91237f},
+      {0.f, 0.244206f, 0.f},
+      {0.445391f, 0.f, 0.184836f},
+      {0.f, 0.749557f, 0.749557f},
   };
 
   softmaxActivation.backward(out, inputBackward);
