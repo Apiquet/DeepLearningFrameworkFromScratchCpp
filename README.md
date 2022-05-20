@@ -1,4 +1,4 @@
-# DeepLearningFrameworkFromScratchCpp
+# Deep Learning Framework From Scratch in C++
 
 Full explanation of the projects in this [article](https://foundationsofdl.com/2022/02/12/neural-network-from-scratch-part-5-c-deep-learning-framework-implementation/).
 
@@ -20,9 +20,9 @@ Download Eigen code from https://gitlab.com/libeigen/eigen/-/releases/3.4.0
 
 Extract downloaded zip file
 
-Copy the folder Eigen contained in extracted folder (eigen-version/Eigen) to DeepLearningFrameworkFromScratchCpp/include/
+Copy the folder Eigen/ contained in extracted folder (eigen-version/Eigen) to DeepLearningFrameworkFromScratchCpp/include/
 
-### How to run a training
+### How to run test training
 
 The file tests/main.cpp contains an example of implementation of a neural network with the developed library.
 The model learns to classify 2D data points into 2 classes (inside / outside a circle).
