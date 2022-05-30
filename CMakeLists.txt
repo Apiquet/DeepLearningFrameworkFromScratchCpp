@@ -25,7 +25,3 @@ if(BUILD_TESTING)
 endif()
 
 add_executable(TestDeepLearningFramework ${SOURCES})
-
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
