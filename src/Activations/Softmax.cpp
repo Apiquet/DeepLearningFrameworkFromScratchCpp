@@ -16,11 +16,23 @@ void Softmax::forward(Eigen::MatrixXf &out, const Eigen::MatrixXf &x) {
 }
 
 void Softmax::backward(Eigen::MatrixXf &ddout, const Eigen::MatrixXf &dout) {
-  Eigen::MatrixXf equationResult;
-  ddout =
-      dout.array() * (mForwardInputWithSoftmaxApplied.array() *
-                      (1.f - mForwardInputWithSoftmaxApplied.array()).array())
-                         .array();
+  const Eigen::MatrixXf grad = dout;
+
+  for (int i = 0; i < dout.rows(); ++i) {
+    for (int j = 0; j < dout.cols(); ++j) {
+      for (int k = 0; k < dout.cols(); ++k) {
+        if (j == k) {
+          ddout(i, j) += grad(i, k) *
+                         mForwardInputWithSoftmaxApplied(i, k) *
+                         (1.f - mForwardInputWithSoftmaxApplied(i, j));
+        } else {
+          ddout(i, j) += grad(i, k) *
+                         mForwardInputWithSoftmaxApplied(i, k) *
+                         (-mForwardInputWithSoftmaxApplied(i, j));
+        }
+      }
+    }
+  }
 }
 
 void Softmax::printDescription() {
